@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
+import uk.ac.ox.ctl.lti13.Lti13Configurer;
 import uk.ac.ox.ctl.lti13.OAuth2AuthorizationRequestRedirectFilter;
 import uk.ac.ox.ctl.lti13.security.oauth2.client.lti.authentication.OidcLaunchFlowAuthenticationProvider;
 import uk.ac.ox.ctl.lti13.security.oauth2.client.lti.authentication.TargetLinkUriAuthenticationSuccessHandler;
@@ -35,29 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/resources/**", "/favicon.ico", "/config.json", "/.well-known/jwks.json")
                 .permitAll()
                 ;
-
-        http.csrf().ignoringAntMatchers("/oauth2/login_initiation/**", "/oauth2/login");
-
-        OidcLaunchFlowAuthenticationProvider oidcLaunchFlowAuthenticationProvider = new OidcLaunchFlowAuthenticationProvider();
-        http.authenticationProvider(oidcLaunchFlowAuthenticationProvider);
-//        oidcLaunchFlowAuthenticationProvider.setAuthoritiesMapper(new LtiAuthoritiesMapper());
-        // This handles step 1 of the IMS SEC
-        OIDCInitiatingLoginRequestResolver resolver = new OIDCInitiatingLoginRequestResolver(clientRegistrationRepository, "/oauth2/login_initiation");
-        OAuth2AuthorizationRequestRedirectFilter authorizationRequestRedirectFilter = new OAuth2AuthorizationRequestRedirectFilter(resolver);
-        http.addFilterAfter(authorizationRequestRedirectFilter, LogoutFilter.class);
-
-        // This handles the actual login
-        OAuth2LoginAuthenticationFilter loginFilter = new OAuth2LoginAuthenticationFilter(clientRegistrationRepository, "/oauth2/login");
-        // This is to redirect things back the frontend
-        TargetLinkUriAuthenticationSuccessHandler successHandler = new TargetLinkUriAuthenticationSuccessHandler();
-        successHandler.setTargetUrlParameter("target_link_uri");
-        loginFilter.setAuthenticationSuccessHandler(successHandler);
-        ProviderManager authenticationManager = new ProviderManager(Collections.singletonList(oidcLaunchFlowAuthenticationProvider));
-        authenticationManager.setAuthenticationEventPublisher(new DefaultAuthenticationEventPublisher(applicationEventPublisher));
-        loginFilter.setAuthenticationManager(authenticationManager);
-        http.addFilterAfter(loginFilter, AbstractPreAuthenticatedProcessingFilter.class);
-
-        http.headers().frameOptions().disable();
+        Lti13Configurer lti13Configurer = new Lti13Configurer();
+        http.apply(lti13Configurer);
     }
 
 }
