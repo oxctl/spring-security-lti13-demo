@@ -33,17 +33,17 @@ public class Config13Controller {
     @GetMapping("/config.json")
     public Lti13Config getConfig(HttpServletRequest request) {
         String urlPrefix = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
-        Canvas13Placement linkSelection = new Canvas13PlacementBuilder()
-                .placement(Canvas13Placement.Placement.LINK_SELECTION)
+        Canvas13Placement coursePlacement = new Canvas13PlacementBuilder()
+                .placement(Canvas13Placement.Placement.COURSE_NAVIGATION)
                 .enabled(false)
-                .messageType(Canvas13Placement.MessageType.LtiDeepLinkingRequest)
+                .messageType(Canvas13Placement.MessageType.LtiResourceLinkRequest)
                 .createCanvas13Placement();
-        Canvas13Placement assignmentSelection = new Canvas13PlacementBuilder()
-                .placement(Canvas13Placement.Placement.ASSIGNMENT_SELECTION)
+        Canvas13Placement accountPlacement = new Canvas13PlacementBuilder()
+                .placement(Canvas13Placement.Placement.ACCOUNT_NAVIGATION)
                 .enabled(true)
-                .messageType(Canvas13Placement.MessageType.LtiDeepLinkingRequest)
+                .messageType(Canvas13Placement.MessageType.LtiResourceLinkRequest)
                 .createCanvas13Placement();
-        List<Canvas13Placement> placements = Arrays.asList(linkSelection, assignmentSelection);
+        List<Canvas13Placement> placements = Arrays.asList(coursePlacement, accountPlacement);
         Canvas13Settings canvas13Settings = new Canvas13SettingsBuilder()
                 .placements(placements)
                 .createCanvas13Settings();
