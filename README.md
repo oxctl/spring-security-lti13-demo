@@ -27,7 +27,7 @@ Go to you account and add a LTI Developer Key, fill in the following:
 
  * Key name: Name of your tool's key (eg LTI 1.3 Tool Key)
  * Owner email: your email.
- * Redirect URIs: https://server/oauth2/login
+ * Redirect URIs: https://server/lti/login
  * Method: Paste JSON
  * LTI 1.3 Configuration: Go to https://server/config.json and copy and paste the content into this field.
  
@@ -39,7 +39,7 @@ Create/Open the file `config/application.properties` and add these properties:
     spring.security.oauth2.client.registration.canvas.client-secret=secret
     spring.security.oauth2.client.registration.canvas.authorization-grant-type=implicit
     spring.security.oauth2.client.registration.canvas.scope=openid
-    spring.security.oauth2.client.registration.canvas.redirect-uri={baseUrl}/oauth2/login
+    spring.security.oauth2.client.registration.canvas.redirect-uri={baseUrl}/lti/login
     
     spring.security.oauth2.client.provider.canvas.authorization-uri=https://canvas.instructure.com/api/lti/authorize_redirect
     spring.security.oauth2.client.provider.canvas.token-uri=https://canvas.instructure.com/login/oauth2/token
@@ -90,7 +90,7 @@ which allows you to create a Platform to perform test launches with. These instr
        spring.security.oauth2.client.registration.ims-ri.client-secret=unused
        spring.security.oauth2.client.registration.ims-ri.authorization-grant-type=implicit
        spring.security.oauth2.client.registration.ims-ri.scope=openid
-       spring.security.oauth2.client.registration.ims-ri.redirect-uri={baseUrl}/oauth2/login
+       spring.security.oauth2.client.registration.ims-ri.redirect-uri={baseUrl}/lti/login
        
        spring.security.oauth2.client.provider.ims-ri.authorization-uri=https://lti-ri.imsglobal.org/platforms/343/authorizations/new
        spring.security.oauth2.client.provider.ims-ri.token-uri=https://lti-ri.imsglobal.org/platforms/343/access_tokens
@@ -122,7 +122,7 @@ Step 5: In Platform tab, view your Platform
  * Click Resource Links
  * Populate resource link values in form
  * For Tool link url, use https://localhost:8443/
- * For Login initiation url, use https://localhost:8443/oauth2/login_initiation/ims-ri
+ * For Login initiation url, use https://localhost:8443/lti/login_initiation/ims-ri
  * Click Save
 
  * Navigate and view your Platform

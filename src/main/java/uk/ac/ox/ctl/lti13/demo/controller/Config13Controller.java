@@ -59,7 +59,7 @@ public class Config13Controller {
         return new Lti13ConfigBuilder()
                 .title(title)
                 .description(description)
-                .oidcInitiaionUrl(urlPrefix + "/oauth2/login_initiation/canvas")
+                .oidcInitiaionUrl(urlPrefix + "/lti/login_initiation/canvas")
                 .targetLinkUri(urlPrefix)
                 .extensions(extensions)
                 .publicJwk(jwkSet.getKeyByKeyId(jwtId).toPublicJWK().toJSONObject())
