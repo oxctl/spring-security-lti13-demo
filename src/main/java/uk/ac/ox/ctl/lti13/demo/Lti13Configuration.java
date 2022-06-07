@@ -59,7 +59,7 @@ public class Lti13Configuration {
 
     @Bean
     public KeyPairService keyPairService(KeyPair keyPair) {
-        return new SingleKeyPairService(keyPair);
+        return new SingleKeyPairService(keyPair, jwtId);
     }
 
     @Bean
