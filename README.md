@@ -2,6 +2,14 @@
 
 This is a small LTI 1.3 tool that can be installed.
 
+## Create config directory
+To run the Spring Boot application, we need to have a bean of type:
+```Java
+org.springframework.security.oauth2.client.registration.ClientRegistrationRepository
+```
+Hence, we need to create a config folder in the root directory and inside that we need to add an
+```application.properties``` file.
+
 ## TLS Setup
 
 To setup TLS in a development environment it's recommended that you install [mkcert](https://github.com/FiloSottile/mkcert) which will install a trusted root certificate and then allow a certificate to be generated for localhost. Once installed run this in the root of the project:
@@ -33,7 +41,7 @@ Go to you account and add a LTI Developer Key, fill in the following:
  
 ## Local Canvas Setup
 
-Create/Open the file `config/application.properties` and add these properties:
+Open the file `config/application.properties` and add these properties:
 
     spring.security.oauth2.client.registration.canvas.client-id=1234
     spring.security.oauth2.client.registration.canvas.client-secret=secret
