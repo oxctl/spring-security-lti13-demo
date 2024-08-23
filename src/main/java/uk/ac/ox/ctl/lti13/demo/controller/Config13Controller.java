@@ -1,13 +1,13 @@
 package uk.ac.ox.ctl.lti13.demo.controller;
 
 import com.nimbusds.jose.jwk.JWKSet;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import uk.ac.ox.ctl.lti13.demo.controller.lti13.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 import static uk.ac.ox.ctl.lti13.demo.controller.lti13.Canvas13Extension.INSTRUCTURE;

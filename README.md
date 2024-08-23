@@ -41,7 +41,7 @@ Go to you account and add a LTI Developer Key, fill in the following:
  
 ## Local Canvas Setup
 
-Open the file `config/application.properties` and add these properties:
+Open the file `config/application.properties` and add these properties or copy `config/application-example.properties`:
 
     spring.security.oauth2.client.registration.canvas.client-id=1234
     spring.security.oauth2.client.registration.canvas.client-secret=secret
@@ -55,7 +55,6 @@ Open the file `config/application.properties` and add these properties:
     spring.security.oauth2.client.provider.canvas.user-name-attribute=sub
     
  * replace the client-id value (1234) with the ID of the LTI Developer Key you have created.
- * replace the client-secret value (secret) with the LTI Developer Key secret.
  * you can update the URIs to point to the canvas instance you are using, but it works fine using the canvas.instructure.com
  
  ## LTI Reference Implementation Setup
