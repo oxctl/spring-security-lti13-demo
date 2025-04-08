@@ -20,9 +20,9 @@ public class WebSecurityConfig {
                     "/config.json", "/.well-known/jwks.json", "/error").permitAll();
             authorizeHttpRequestsCustomizer.anyRequest().authenticated();
         });
-        Lti13Configurer lti13Configurer = new Lti13Configurer();
-        lti13Configurer.setSecurityContextRepository(new HttpSessionSecurityContextRepository());
-        http.apply(lti13Configurer);
+        http.with(new Lti13Configurer(), lti13Configurer -> lti13Configurer
+                .setSecurityContextRepository(new HttpSessionSecurityContextRepository())
+        );
         return http.build();
     }
 
