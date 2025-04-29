@@ -60,7 +60,7 @@ public class Config13Controller {
                 .title(title)
                 .description(description)
                 .oidcInitiaionUrl(urlPrefix + "/lti/login_initiation/canvas")
-                .targetLinkUri(urlPrefix)
+                .targetLinkUri(urlPrefix+ "/demo")
                 .extensions(extensions)
                 .publicJwk(jwkSet.getKeyByKeyId(jwtId).toPublicJWK().toJSONObject())
                 .customFields(customFields)
