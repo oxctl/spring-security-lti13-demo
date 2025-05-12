@@ -52,8 +52,9 @@ public class Canvas13Placement {
     private String targetLinkUri;
     private String canvasIconClass;
     private Map<String, String> customFields;
+    private String windowTarget;
 
-    public Canvas13Placement(String text, boolean enabled, String iconUrl, Placement placement, MessageType messageType, String targetLinkUri, String canvasIconClass, Map<String, String> customFields) {
+    public Canvas13Placement(String text, boolean enabled, String iconUrl, Placement placement, MessageType messageType, String targetLinkUri, String canvasIconClass, Map<String, String> customFields, String windowTarget) {
         this.text = text;
         this.enabled = enabled;
         this.iconUrl = iconUrl;
@@ -62,6 +63,7 @@ public class Canvas13Placement {
         this.targetLinkUri = targetLinkUri;
         this.canvasIconClass = canvasIconClass;
         this.customFields = customFields;
+        this.windowTarget = windowTarget;
     }
 
     public String getText() {
@@ -94,5 +96,10 @@ public class Canvas13Placement {
 
     public Map<String, String> getCustomFields() {
         return customFields;
+    }
+
+    @JsonProperty("windowTarget")
+    public String getWindowTarget() {
+        return windowTarget;
     }
 }

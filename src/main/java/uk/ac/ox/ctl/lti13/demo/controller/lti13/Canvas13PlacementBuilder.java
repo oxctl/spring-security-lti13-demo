@@ -11,6 +11,7 @@ public class Canvas13PlacementBuilder {
     private String targetLinkUri;
     private String canvasIconClass;
     private Map<String, String> customFields;
+    private String windowTarget;
 
     public Canvas13PlacementBuilder text(String text) {
         this.text = text;
@@ -52,7 +53,12 @@ public class Canvas13PlacementBuilder {
         return this;
     }
 
+    public Canvas13PlacementBuilder windowTarget(String windowTarget) {
+        this.windowTarget = windowTarget;
+        return this;
+    }
+
     public Canvas13Placement createCanvas13Placement() {
-        return new Canvas13Placement(text, enabled, iconUrl, placement, messageType, targetLinkUri, canvasIconClass, customFields);
+        return new Canvas13Placement(text, enabled, iconUrl, placement, messageType, targetLinkUri, canvasIconClass, customFields, windowTarget);
     }
 }

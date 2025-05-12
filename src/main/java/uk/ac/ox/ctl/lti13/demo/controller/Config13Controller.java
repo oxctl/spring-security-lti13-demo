@@ -35,7 +35,7 @@ public class Config13Controller {
         String urlPrefix = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
         Canvas13Placement coursePlacement = new Canvas13PlacementBuilder()
                 .placement(Canvas13Placement.Placement.COURSE_NAVIGATION)
-                .enabled(false)
+                .enabled(true)
                 .messageType(Canvas13Placement.MessageType.LtiResourceLinkRequest)
                 .createCanvas13Placement();
         Canvas13Placement accountPlacement = new Canvas13PlacementBuilder()
@@ -60,7 +60,7 @@ public class Config13Controller {
                 .title(title)
                 .description(description)
                 .oidcInitiaionUrl(urlPrefix + "/lti/login_initiation/canvas")
-                .targetLinkUri(urlPrefix)
+                .targetLinkUri(urlPrefix+ "/demo")
                 .extensions(extensions)
                 .publicJwk(jwkSet.getKeyByKeyId(jwtId).toPublicJWK().toJSONObject())
                 .customFields(customFields)
